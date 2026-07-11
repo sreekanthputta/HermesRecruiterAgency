@@ -233,6 +233,7 @@ def run_sourcer(
     role_type: str,
     location: str,
     target_count: int = 10,
+    parent_trace_id: str | None = None,
 ) -> list[dict[str, Any]]:
     """Find real public profiles matching rubric. See module docstring."""
     started = time.time()
@@ -253,7 +254,7 @@ def run_sourcer(
         except Exception as e:
             print(f"[sourcer] linkup error on {q!r}: {e}", file=sys.stderr)
 
-    _trace(run_id, "linkup_search", f"{len(hits)} unique URLs across {len(queries)} queries")
+    _trace(run_id, "linkup_search", f"{len(hits)} unique URLs across {len(queries)} queries", parent=parent_trace_id)
 
     # 2) Split into GitHub profile URLs vs other, enrich GitHub
     candidates: list[dict[str, Any]] = []
@@ -363,7 +364,7 @@ def run_sourcer(
                 }
             )
 
-    _trace(run_id, "enrich", f"{len(candidates)} enriched raw candidates")
+    _trace(run_id, "enrich", f"{len(candidates)} enriched raw candidates", parent=parent_trace_id)
 
     # 3) Score, verify, filter
     scored: list[dict[str, Any]] = []
@@ -417,7 +418,7 @@ def run_sourcer(
             _upsert(c)
 
     dur = time.time() - started
-    _trace(run_id, "final", f"{len(final)} candidates in {dur:.1f}s")
+    _trace(run_id, "final", f"{len(final)} candidates in {dur:.1f}s", parent=parent_trace_id)
     print(f"[sourcer] done — {len(final)} candidates in {dur:.1f}s", file=sys.stderr)
     return final
 

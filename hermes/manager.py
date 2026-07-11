@@ -216,8 +216,14 @@ def run(jd_text: str, founder_request: str = None) -> dict:
     upsert_run(run_obj)
 
     sourcer_start = time.time()
-    candidates = run_sourcer(rubric, run_id, role_type=plan["role_type"], location=plan["location"]) or []
+    sourcer_trace_id = new_id("trc")
+    candidates = run_sourcer(
+        rubric, run_id,
+        role_type=plan["role_type"], location=plan["location"],
+        parent_trace_id=sourcer_trace_id,
+    ) or []
     write_trace(
+        trace_id=sourcer_trace_id,
         run_id=run_id, specialist="sourcer",
         task_brief="find profiles matching rubric",
         input_summary=f"rubric: {len(rubric.get('must_have', []))} musts",
