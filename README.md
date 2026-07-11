@@ -2,6 +2,8 @@
 
 Hackathon submission — **GrowthX World's Largest Hermes Buildathon**, **AI as Agency** track.
 
+**Live run board:** https://hermes-recruiter.pages.dev/
+
 An AI recruiting agency that runs first-round hiring for a solo founder: rewrites the JD into a scoring rubric, sources 30 real public profiles with evidence, drafts personal outreach per candidate, QAs every message before it moves, and saves approved drafts to the founder's real Gmail. Human clicks Send.
 
 ## Architecture
