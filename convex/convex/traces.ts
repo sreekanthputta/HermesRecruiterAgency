@@ -45,3 +45,11 @@ export const listForRun = query({
     return rows.sort((a, b) => (a.started_at_iso < b.started_at_iso ? -1 : 1));
   },
 });
+
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    const rows = await ctx.db.query("traces").collect();
+    return rows.sort((a, b) => (a.started_at_iso < b.started_at_iso ? -1 : 1));
+  },
+});

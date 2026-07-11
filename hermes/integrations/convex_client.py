@@ -142,6 +142,7 @@ def upsert_run(run: dict) -> str:
     run.setdefault("role_type", run.get("role_type", "unknown"))
     run.setdefault("founder_request", run.get("founder_request", ""))
     run.setdefault("plan", run.get("plan", []))
+    run = {k: v for k, v in run.items() if v is not None}
     ok, _ = _try_convex("mutation", "runs:upsert", run)
     if ok:
         return run["run_id"]
@@ -153,6 +154,14 @@ def upsert_candidate(candidate: dict) -> str:
     if "candidate_id" not in candidate:
         raise ValueError("candidate.candidate_id required")
     candidate.setdefault("status", "sourced")
+    # Convex schema stores outreach_draft as string; JSON-encode dict drafts.
+    # rubric_breakdown keys may contain non-ASCII (em-dash) — Convex rejects
+    # those as field names, so serialise the whole thing to a JSON string.
+    if isinstance(candidate.get("outreach_draft"), (dict, list)):
+        candidate["outreach_draft"] = json.dumps(candidate["outreach_draft"], ensure_ascii=False)
+    if isinstance(candidate.get("rubric_breakdown"), (dict, list)):
+        candidate["rubric_breakdown"] = json.dumps(candidate["rubric_breakdown"], ensure_ascii=False)
+    candidate = {k: v for k, v in candidate.items() if v is not None}
     ok, _ = _try_convex("mutation", "candidates:upsert", candidate)
     if ok:
         return candidate["candidate_id"]
@@ -167,6 +176,9 @@ def upsert_trace(trace: dict) -> str:
         raise ValueError("trace.run_id required")
     if "specialist" not in trace:
         raise ValueError("trace.specialist required")
+    # Convex v.optional(...) means "may be omitted", not "may be null" —
+    # strip None-valued optionals before sending.
+    trace = {k: v for k, v in trace.items() if v is not None}
     ok, _ = _try_convex("mutation", "traces:upsert", trace)
     if ok:
         return trace["trace_id"]

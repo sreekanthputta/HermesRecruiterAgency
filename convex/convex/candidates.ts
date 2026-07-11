@@ -42,3 +42,10 @@ export const listForRun = query({
       .collect();
   },
 });
+
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("candidates").collect();
+  },
+});
