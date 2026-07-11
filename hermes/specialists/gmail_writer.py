@@ -79,10 +79,18 @@ def run_gmail_writer(candidate: dict) -> str:
         raise ValueError("run_gmail_writer: candidate.outreach_draft is required")
 
     cid = _candidate_id(candidate)
-    subject = _subject_for(candidate)
     to_addr = _to_address(candidate)
 
-    body_parts = [candidate["outreach_draft"].rstrip()]
+    # Copywriter may return either a plain string or {"subject": ..., "body": ...}
+    draft = candidate["outreach_draft"]
+    if isinstance(draft, dict):
+        body_text = str(draft.get("body") or draft.get("text") or "").rstrip()
+        subject = draft.get("subject") or _subject_for(candidate)
+    else:
+        body_text = str(draft).rstrip()
+        subject = _subject_for(candidate)
+
+    body_parts = [body_text]
     footer_bits = []
     if candidate.get("profile_url"):
         footer_bits.append(f"Profile: {candidate['profile_url']}")

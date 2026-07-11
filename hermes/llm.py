@@ -7,7 +7,11 @@ from typing import Optional
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
+# Guard against shell OPENAI_BASE_URL / OPENAI_ORGANIZATION redirecting to a local proxy.
+for _v in ("OPENAI_BASE_URL", "OPENAI_ORGANIZATION"):
+    if _v in os.environ and not os.environ[_v].startswith("https://api.openai.com"):
+        os.environ.pop(_v, None)
 
 # Rates in USD per token
 RATES = {
@@ -34,7 +38,10 @@ class LLMResult:
 
 def _client():
     from openai import OpenAI
-    return OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    base_url = os.getenv("OPENAI_BASE_URL")
+    if base_url and not base_url.startswith("https://api.openai.com"):
+        base_url = None
+    return OpenAI(api_key=os.getenv("OPENAI_API_KEY"), base_url=base_url)
 
 
 def call(prompt: str, model: str = None, temperature: float = 0.4, json_mode: bool = False) -> LLMResult:

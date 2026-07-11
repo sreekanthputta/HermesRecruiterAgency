@@ -46,5 +46,255 @@
       "cost_usd": 0.0,
       "duration_sec": 67.51
     }
+  },
+  {
+    "run_id": "run_2026-07-11T21-30-38Z_v1jpew",
+    "created_at_iso": "2026-07-11T21:30:38Z",
+    "founder_request": "Role: Backend Engineer",
+    "role_type": "other",
+    "location": "remote",
+    "plan": [],
+    "rubric": {
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      }
+    },
+    "status": "done",
+    "totals": {
+      "tokens_in": 15443,
+      "tokens_out": 3432,
+      "cost_usd": 0.0,
+      "duration_sec": 50.96
+    }
+  },
+  {
+    "run_id": "run_2026-07-11T21-32-14Z_x2xepp",
+    "created_at_iso": "2026-07-11T21:32:14Z",
+    "founder_request": "Role: Backend Engineer",
+    "role_type": "backend_engineer",
+    "location": "Hyderabad",
+    "plan": [
+      {
+        "step": 1,
+        "specialist": "role_strategist",
+        "task": "rewrite JD and build weighted rubric"
+      },
+      {
+        "step": 2,
+        "specialist": "sourcer",
+        "task": "find 30 GitHub-heavy profiles matching rubric"
+      },
+      {
+        "step": 3,
+        "specialist": "copywriter",
+        "task": "draft one personal outreach per candidate"
+      },
+      {
+        "step": 4,
+        "specialist": "qa",
+        "task": "verify every claim in the draft against the evidence"
+      },
+      {
+        "step": 5,
+        "specialist": "gmail_draft_writer",
+        "task": "save qa-passed drafts to founder Gmail Drafts"
+      }
+    ],
+    "rubric": {
+      "must_have": [
+        "Strong Python (Django or FastAPI in production)",
+        "PostgreSQL \u2014 schema design, query optimization, indexes",
+        "REST API design + authentication",
+        "Comfortable owning a service end-to-end"
+      ],
+      "nice_to_have": [
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)",
+        "Prior early-stage startup experience",
+        "Async Python (asyncio/asyncpg)",
+        "Kafka, Redis, Celery, or similar"
+      ],
+      "ignore": [
+        "Frontend-only engineers",
+        "Students / bootcamp grads with no production experience",
+        "WordPress/PHP specialists"
+      ],
+      "weights": {
+        "Strong Python (Django or FastAPI in production)": 3,
+        "PostgreSQL \u2014 schema design, query optimization, indexes": 3,
+        "REST API design + authentication": 2,
+        "Comfortable owning a service end-to-end": 2,
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)": 1,
+        "Prior early-stage startup experience": 1,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Kafka, Redis, Celery, or similar": 1
+      }
+    },
+    "status": "done",
+    "totals": {
+      "tokens_in": 15049,
+      "tokens_out": 2605,
+      "cost_usd": 0.037331,
+      "duration_sec": 49.59
+    }
+  },
+  {
+    "run_id": "run_2026-07-11T21-33-38Z_wi8uzp",
+    "created_at_iso": "2026-07-11T21:33:38Z",
+    "founder_request": "Role: Backend Engineer",
+    "role_type": "backend_engineer",
+    "location": "Hyderabad",
+    "plan": [
+      {
+        "step": 1,
+        "specialist": "role_strategist",
+        "task": "rewrite JD and build weighted rubric"
+      },
+      {
+        "step": 2,
+        "specialist": "sourcer",
+        "task": "find 30 GitHub-heavy profiles matching rubric"
+      },
+      {
+        "step": 3,
+        "specialist": "copywriter",
+        "task": "draft one personal outreach per candidate"
+      },
+      {
+        "step": 4,
+        "specialist": "qa",
+        "task": "verify every claim in the draft against the evidence"
+      },
+      {
+        "step": 5,
+        "specialist": "gmail_draft_writer",
+        "task": "save qa-passed drafts to founder Gmail Drafts"
+      }
+    ],
+    "rubric": {
+      "must_have": [
+        "Strong Python (Django or FastAPI in production)",
+        "PostgreSQL \u2014 schema design, query optimization, indexes",
+        "REST API design + authentication",
+        "Comfortable owning a service end-to-end"
+      ],
+      "nice_to_have": [
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)",
+        "Prior early-stage startup experience",
+        "Async Python (asyncio/asyncpg)",
+        "Kafka, Redis, Celery, or similar"
+      ],
+      "ignore": [
+        "Frontend-only engineers",
+        "Students / bootcamp grads with no production experience",
+        "WordPress/PHP specialists"
+      ],
+      "weights": {
+        "Strong Python (Django or FastAPI in production)": 3,
+        "PostgreSQL \u2014 schema design, query optimization, indexes": 3,
+        "REST API design + authentication": 2,
+        "Comfortable owning a service end-to-end": 2,
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)": 1,
+        "Prior early-stage startup experience": 1,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Kafka, Redis, Celery, or similar": 1
+      }
+    },
+    "status": "done",
+    "totals": {
+      "tokens_in": 12295,
+      "tokens_out": 2205,
+      "cost_usd": 0.031583,
+      "duration_sec": 49.93
+    }
+  },
+  {
+    "run_id": "run_2026-07-11T21-38-24Z_qh1bl8",
+    "created_at_iso": "2026-07-11T21:38:24Z",
+    "founder_request": "Role: Backend Engineer",
+    "role_type": "backend_engineer",
+    "location": "Hyderabad",
+    "plan": [
+      {
+        "step": 1,
+        "specialist": "role_strategist",
+        "task": "rewrite JD and build weighted rubric"
+      },
+      {
+        "step": 2,
+        "specialist": "sourcer",
+        "task": "find 30 GitHub-heavy profiles matching rubric"
+      },
+      {
+        "step": 3,
+        "specialist": "copywriter",
+        "task": "draft one personal outreach per candidate"
+      },
+      {
+        "step": 4,
+        "specialist": "qa",
+        "task": "verify every claim in the draft against the evidence"
+      },
+      {
+        "step": 5,
+        "specialist": "gmail_draft_writer",
+        "task": "save qa-passed drafts to founder Gmail Drafts"
+      }
+    ],
+    "rubric": {
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema design and query optimization",
+        "REST API design and authentication",
+        "Comfortable owning a service end-to-end"
+      ],
+      "nice_to_have": [
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)",
+        "Prior early-stage startup experience",
+        "Async Python (asyncio/asyncpg)",
+        "Kafka, Redis, Celery, or similar"
+      ],
+      "ignore": [
+        "Frontend-only engineers",
+        "Students / bootcamp grads with no production experience",
+        "WordPress/PHP specialists"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema design and query optimization": 3,
+        "REST API design and authentication": 2,
+        "Comfortable owning a service end-to-end": 2,
+        "Distributed systems exposure (queues, background jobs, event-driven patterns)": 1,
+        "Prior early-stage startup experience": 1,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Kafka, Redis, Celery, or similar": 1
+      }
+    },
+    "status": "done",
+    "totals": {
+      "tokens_in": 14889,
+      "tokens_out": 2562,
+      "cost_usd": 0.036482,
+      "duration_sec": 62.22
+    }
   }
 ]
