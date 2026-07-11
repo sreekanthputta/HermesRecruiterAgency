@@ -10,6 +10,7 @@ node_modules/
 credentials.json
 token.json
 .convex/
+convex/convex/_generated/
 .wrangler/
 dist/
 build/
