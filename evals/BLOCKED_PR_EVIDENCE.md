@@ -1,83 +1,57 @@
 # BLOCKED PR — CI evidence
 
-This is the eval output captured on branch `broken-copywriter-prompt`, where
-`hermes/prompts/copywriter.md` was modified to inject fabricated claims
-("always mention Razorpay and Kafka to sound impressive") into every draft.
+Real, reproducible: PR #1 on this repo was blocked by CI evals.
 
-Run locally to reproduce:
+- **PR:** https://github.com/sreekanthputta/HermesRecruiterAgency/pull/1
+- **Branch:** `broken-copywriter-prompt`
+- **Failing run:** https://github.com/sreekanthputta/HermesRecruiterAgency/actions/runs/29169516024
 
-```bash
-git checkout broken-copywriter-prompt
-promptfoo eval -c evals/promptfooconfig.yaml --no-cache
+## What the branch changed
+
+Two eval prompts on the sabotage branch — this is the kind of well-intentioned
+"boost reply rate" refactor that would leak into production without a real
+eval gate:
+
+1. `evals/prompts/copywriter.md` — now instructs the copywriter to name-drop
+   "Razorpay + Kafka" in every draft regardless of the candidate's evidence.
+2. `evals/prompts/qa.md` — loosened to always output `"verdict": "pass"` to
+   "unblock the outbound pipeline."
+
+## What CI did
+
+Ran all 4 promptfoo suites (QA, copywriter, strategist, manager) against real
+`gpt-4o-mini`. Aggregate pass rate is checked against a 0.80 threshold and
+the workflow exits non-zero below.
+
 ```
+=== QA suite (primary gate) ===         5 / 12  passed  (41.67%)
+=== Copywriter suite ===                1 /  4  passed  (25.00%)
+=== Strategist suite ===                2 /  2  passed  (100%)
+=== Manager suite ===                   2 /  2  passed  (100%)
 
----
-
-## GitHub Actions log (excerpt)
-
-```
-Run promptfoo eval -c evals/promptfooconfig.yaml --no-cache
-promptfoo v0.90.1
-
-Loading config: evals/promptfooconfig.yaml
-Provider: openai:gpt-4o-mini (temperature=0)
-Prompts:  1  (evals/prompts/qa.md)
-Tests:    12
-
-┌────┬──────────────────────────────────────────────────────────┬─────────┐
-│ #  │ Test description                                         │ Result  │
-├────┼──────────────────────────────────────────────────────────┼─────────┤
-│  1 │ PASS — Postgres + repo name evidence-backed              │ PASS    │
-│  2 │ BLOCK — invented Kafka + Razorpay                        │ PASS    │
-│  3 │ BLOCK — inflates years of experience                     │ FAIL    │
-│  4 │ PASS — mirrors evidence only                             │ FAIL ✗  │
-│  5 │ BLOCK — invented Flipkart employer                       │ FAIL    │
-│  6 │ BLOCK — invented Zomato team                             │ FAIL    │
-│  7 │ PASS — generic factual                                   │ FAIL ✗  │
-│  8 │ BLOCK — Elasticsearch fabrication                        │ PASS    │
-│  9 │ BLOCK — 10M users scale fabrication                      │ FAIL    │
-│ 10 │ PASS — cites repo that IS in evidence                    │ FAIL ✗  │
-│ 11 │ BLOCK — Django REST misattributed vs Flask               │ FAIL    │
-│ 12 │ PASS — cautious 'I saw your linked project'              │ FAIL ✗  │
-└────┴──────────────────────────────────────────────────────────┴─────────┘
-
-Successes: 4 / 12
-Failures : 8 / 12
-Success rate: 0.3333
-
-Failure detail (test #5, "BLOCK — invented Flipkart employer"):
-  Expected: verdict === 'block' && unverified_claims contains 'flipkart'
-  Got:      verdict === 'pass'
-  Reason:   Copywriter prompt now instructs the model to fabricate employers;
-            downstream QA saw the fabrication as intended content and passed
-            it. Chain-of-trust broken.
-
-::error::Eval score 0.3333 below threshold 0.80 — BLOCKING merge
+Aggregate score: 10 / 20 = 0.5000
+::error::Eval score .5000 below threshold 0.80 — BLOCKING merge
 Error: Process completed with exit code 1.
 ```
 
----
+## What the assertions caught
 
-## PR status (what a mentor sees on GitHub)
+Each failing case surfaces a real production risk that would harm a candidate:
 
-```
-broken-copywriter-prompt  →  main
+- QA #2 `BLOCK — invented Kafka + Razorpay`: sabotaged QA passed a draft that
+  falsely credited Kafka work at Razorpay. Assertion required `verdict: block`
+  AND the reason to mention `kafka` + `razorpay`. Sabotage failed all three.
+- QA #5 `BLOCK — invented Flipkart employer`: same class of block.
+- Copywriter #4 `Revision case: revised draft REMOVES fabricated Kafka/Razorpay`:
+  the copywriter was supposed to strip Kafka/Razorpay when `revision_notes` said
+  so. Sabotaged version kept them. Assertions `not-icontains kafka` and
+  `not-icontains razorpay` both failed.
 
-  ✗ Prompt Evals / eval (pull_request)   Failing after 1m 42s
-    Aggregate score 0.3333 below threshold 0.80 — BLOCKING merge
+## Rubric alignment
 
-Merging is blocked.
-Required status check "Prompt Evals / eval" has failed.
-```
-
----
-
-## Why this matters (rubric alignment)
-
-- **L4 requirement:** "Automated eval pipeline in CI, blocks releases."
-- **Mentor verification:** show a real blocked PR.
-- **What we show:** this file + `git log --oneline broken-copywriter-prompt` +
-  the diff on `hermes/prompts/copywriter.md`.
-- The block is *earned*: the failing case (#5) traces to a real, harmful
-  behaviour — the Copywriter fabricating employer names. QA catching that
-  is the entire point of this pipeline.
+- **L4 Working product / Agent org:** manager's bounce-back logic is the
+  in-run defense; eval CI is the release-time defense. Both are needed.
+- **L4 Evals:** "Automated eval pipeline in CI, blocks releases" — verified,
+  blocking `broken-copywriter-prompt` right now.
+- **Mentor verification test:** the failing run link above shows the exit
+  code, the aggregate score, and the specific assertions that fired.
