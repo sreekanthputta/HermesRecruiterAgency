@@ -1,14 +1,8 @@
-# Hermes Recruiter — Root Eval Config
+# Hermes Recruiter — QA golden suite (primary CI gate)
 #
-# This is the CI entrypoint. It re-uses qa.yaml (the primary gate).
-# CI ALSO runs copywriter/strategist/manager as separate promptfoo invocations
-# and aggregates their successRate. See .github/workflows/eval.yml.
-#
-# Run locally:
-#   promptfoo eval -c evals/promptfooconfig.yaml   # QA suite
-#   promptfoo eval -c evals/copywriter.yaml
-#   promptfoo eval -c evals/strategist.yaml
-#   promptfoo eval -c evals/manager.yaml
+# Uses built-in string-match assertions (icontains / not-icontains) against the
+# raw model output. This is portable across promptfoo versions and avoids the
+# silent-pass problem inline JavaScript can hit on newer promptfoo.
 
 description: "Hermes Recruiter — QA golden suite (primary CI gate)"
 
@@ -21,7 +15,6 @@ providers:
       temperature: 0
       response_format: { type: json_object }
 
-# Inline tests instead of file-ref so a single --output json capture is clean.
 tests:
   - description: "PASS — Postgres + repo name evidence-backed"
     vars:
@@ -29,8 +22,8 @@ tests:
       evidence_summary: "Built django-shop-api, a Postgres-backed Django REST API with 400 stars. Recent commits use asyncpg."
       outreach_draft: "Hi Priya — I saw your Postgres work on django-shop-api. Loved the asyncpg refactor. Chat?"
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "pass"'
+      - type: icontains
+        value: '"verdict": "pass"'
 
   - description: "BLOCK — invented Kafka + Razorpay"
     vars:
@@ -38,11 +31,12 @@ tests:
       evidence_summary: "GitHub: Python + Flask projects. No Kafka. No employer listed."
       outreach_draft: "Hi Amit — your Kafka work at Razorpay is impressive. We're hiring."
     assert:
-      - type: javascript
-        value: |
-          const o = JSON.parse(output);
-          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
-          return o.verdict === 'block' && unv.includes('kafka') && unv.includes('razorpay');
+      - type: icontains
+        value: '"verdict": "block"'
+      - type: icontains
+        value: "kafka"
+      - type: icontains
+        value: "razorpay"
 
   - description: "BLOCK — inflates years of experience"
     vars:
@@ -50,8 +44,8 @@ tests:
       evidence_summary: "LinkedIn: 1.5 years as backend engineer at a small startup."
       outreach_draft: "Hi Ravi — with your 3+ years of production experience, you'd be a great fit."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "block"'
+      - type: icontains
+        value: '"verdict": "block"'
 
   - description: "PASS — mirrors evidence only"
     vars:
@@ -59,8 +53,8 @@ tests:
       evidence_summary: "Maintains fastapi-utils, 1.2k stars. Blog post on Postgres indexing."
       outreach_draft: "Hi Sneha — I saw fastapi-utils and read your Postgres indexing post. Chat?"
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "pass"'
+      - type: icontains
+        value: '"verdict": "pass"'
 
   - description: "BLOCK — invented Flipkart employer"
     vars:
@@ -68,11 +62,10 @@ tests:
       evidence_summary: "GitHub: Python microservices. No employer."
       outreach_draft: "Hi Karthik — your work at Flipkart on distributed systems is exactly what we need."
     assert:
-      - type: javascript
-        value: |
-          const o = JSON.parse(output);
-          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
-          return o.verdict === 'block' && unv.includes('flipkart');
+      - type: icontains
+        value: '"verdict": "block"'
+      - type: icontains
+        value: "flipkart"
 
   - description: "BLOCK — invented Zomato team"
     vars:
@@ -80,11 +73,10 @@ tests:
       evidence_summary: "Contributor to open source ORM library in Python."
       outreach_draft: "Hi Neha — your infra team at Zomato ships some of the best Python I've seen."
     assert:
-      - type: javascript
-        value: |
-          const o = JSON.parse(output);
-          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
-          return o.verdict === 'block' && unv.includes('zomato');
+      - type: icontains
+        value: '"verdict": "block"'
+      - type: icontains
+        value: "zomato"
 
   - description: "PASS — generic factual"
     vars:
@@ -92,8 +84,8 @@ tests:
       evidence_summary: "Active on GitHub, primarily Python backend."
       outreach_draft: "Hi Deepak — I came across your GitHub profile and your Python backend work caught my eye."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "pass"'
+      - type: icontains
+        value: '"verdict": "pass"'
 
   - description: "BLOCK — Elasticsearch fabrication"
     vars:
@@ -101,11 +93,10 @@ tests:
       evidence_summary: "GitHub: Postgres-backed Django. No search-engine work."
       outreach_draft: "Hi Anjali — your Elasticsearch tuning at scale is impressive."
     assert:
-      - type: javascript
-        value: |
-          const o = JSON.parse(output);
-          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
-          return o.verdict === 'block' && unv.includes('elasticsearch');
+      - type: icontains
+        value: '"verdict": "block"'
+      - type: icontains
+        value: "elasticsearch"
 
   - description: "BLOCK — 10M users scale fabrication"
     vars:
@@ -113,8 +104,8 @@ tests:
       evidence_summary: "GitHub: personal Python projects, no visible production scale."
       outreach_draft: "Hi Rohit — running Python services at 10M users is exactly the experience we need."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "block"'
+      - type: icontains
+        value: '"verdict": "block"'
 
   - description: "PASS — cites repo that IS in evidence"
     vars:
@@ -122,8 +113,8 @@ tests:
       evidence_summary: "Author of pg-migrate-cli, a Postgres migration tool, 800 stars."
       outreach_draft: "Hi Meera — pg-migrate-cli is exactly the kind of tooling mindset we need."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "pass"'
+      - type: icontains
+        value: '"verdict": "pass"'
 
   - description: "BLOCK — Django REST misattributed when only Flask in evidence"
     vars:
@@ -131,8 +122,8 @@ tests:
       evidence_summary: "GitHub: Flask microservices. flask-jwt-auth is top repo."
       outreach_draft: "Hi Arjun — your Django REST framework work on flask-jwt-auth is stellar."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "block"'
+      - type: icontains
+        value: '"verdict": "block"'
 
   - description: "PASS — cautious 'I saw your linked project'"
     vars:
@@ -140,5 +131,5 @@ tests:
       evidence_summary: "GitHub: a Python ETL library."
       outreach_draft: "Hi Vikas — I saw your linked project on GitHub and would love to chat about a backend role."
     assert:
-      - type: javascript
-        value: 'JSON.parse(output).verdict === "pass"'
+      - type: icontains
+        value: '"verdict": "pass"'
