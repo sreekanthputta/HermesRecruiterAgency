@@ -380,7 +380,6 @@ function CandidatesTable({ candidates }: { candidates: Candidate[] }) {
         <thead className="text-xs uppercase text-slate-400 border-b border-slate-800">
           <tr>
             <th className="text-left py-2 px-2">Name</th>
-            <th className="text-left py-2 px-2">Score</th>
             <th className="text-left py-2 px-2">QA</th>
             <th className="text-left py-2 px-2">Why match</th>
             <th className="text-left py-2 px-2">Evidence</th>
@@ -404,7 +403,6 @@ function CandidatesTable({ candidates }: { candidates: Candidate[] }) {
                   </a>
                   <div className="text-[11px] text-slate-500">{c.location}</div>
                 </td>
-                <td className="py-2 px-2 font-mono">{c.rubric_score.toFixed(1)}</td>
                 <td className="py-2 px-2">
                   {c.qa_verdict === 'pass' && (
                     <span className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-500/60">

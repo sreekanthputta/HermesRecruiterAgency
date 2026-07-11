@@ -452,7 +452,7 @@ def _fallback_candidates(rubric: dict, run_id: str, target_count: int) -> list[d
                 "evidence_url": eurl,
                 "evidence_summary": summary,
                 "location": "Public",
-                "rubric_score": max(score, 5.0),
+                "rubric_score": score,
                 "rubric_breakdown": breakdown,
                 "why_match": _why_match(user, breakdown),
                 "outreach_draft": "",
