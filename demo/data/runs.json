@@ -1,0 +1,50 @@
+[
+  {
+    "run_id": "r1",
+    "created_at_iso": "x",
+    "founder_request": "y",
+    "role_type": "z",
+    "plan": [],
+    "status": "in_progress"
+  },
+  {
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "created_at_iso": "2026-07-11T21:24:09Z",
+    "founder_request": "Role: Backend Engineer",
+    "role_type": "other",
+    "location": "remote",
+    "plan": [],
+    "rubric": {
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      }
+    },
+    "status": "done",
+    "totals": {
+      "tokens_in": 15007,
+      "tokens_out": 3432,
+      "cost_usd": 0.0,
+      "duration_sec": 67.51
+    }
+  }
+]

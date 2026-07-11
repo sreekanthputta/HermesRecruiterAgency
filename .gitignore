@@ -1,0 +1,16 @@
+.env
+.env.local
+*.log
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.DS_Store
+credentials.json
+token.json
+.convex/
+.wrangler/
+dist/
+build/
+.pytest_cache/

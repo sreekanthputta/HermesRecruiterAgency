@@ -1,0 +1,28 @@
+Role: Backend Engineer
+Location: Hyderabad (or remote India)
+Company: Early-stage B2B SaaS, solo founder, pre-seed
+Experience: 3-6 years
+
+Must have:
+- Strong Python (Django or FastAPI in production)
+- PostgreSQL — schema design, query optimization, indexes
+- REST API design + authentication
+- Comfortable owning a service end-to-end
+
+Nice to have:
+- Distributed systems exposure (queues, background jobs, event-driven patterns)
+- Prior early-stage startup experience
+- Async Python (asyncio/asyncpg)
+- Kafka, Redis, Celery, or similar
+
+Not a fit:
+- Frontend-only engineers
+- Students / bootcamp grads with no production experience
+- WordPress/PHP specialists
+
+What you'll build:
+- Core API service for our workflow product
+- Direct hand on Postgres schema decisions
+- Ship features solo with the founder for the first 6 months
+
+Comp: competitive base + meaningful equity

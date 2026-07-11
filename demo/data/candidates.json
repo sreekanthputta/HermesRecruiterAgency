@@ -1,0 +1,401 @@
+[
+  {
+    "candidate_id": "cand_run_demo_20260711T212204__005",
+    "run_id": "run_demo_20260711T212204",
+    "name": "Ahmed Ibrahim",
+    "profile_url": "https://github.com/Ahmed512w",
+    "evidence_url": "https://github.com/Ahmed512w/Python-PostgreSQL-CRUD",
+    "evidence_summary": "Top repo Python-PostgreSQL-CRUD (19\u2605, Python)",
+    "location": "Hyderabad",
+    "rubric_score": 4.55,
+    "rubric_breakdown": {
+      "Python": 3.0,
+      "Postgres": 2.0,
+      "3+ yrs backend": 0.0,
+      "distributed systems": 0.0,
+      "Django": 0.0,
+      "FastAPI": 0.0
+    },
+    "why_match": "Matches: Python, Postgres.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__001",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Ssali Jonathan Kiggundu",
+    "profile_url": "https://github.com/jod35",
+    "evidence_url": "https://github.com/jod35/fastapi-postgresql-sqlalchemy-alembic-docker-template",
+    "evidence_summary": "A human first, then a software engineer. \r\n \u2014 Top repo fastapi-postgresql-sqlalchemy-alembic-docker-template (7\u2605, Python)",
+    "location": "Bombo Uganda",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": {
+      "rewritten_jd": "Pre-seed B2B SaaS founder hiring first backend engineer. Python + Postgres, ship end-to-end with the founder for six months.",
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      },
+      "subject": "Quick note",
+      "body": ""
+    },
+    "qa_verdict": "block",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "qa_blocked"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__006",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Kabirul Islam Mondal",
+    "profile_url": "https://github.com/kabirul",
+    "evidence_url": "https://github.com/kabirul/python-fastapi-postgresql-crud-example",
+    "evidence_summary": "Founder member of Amica Technology & Resources Pvt Ltd. Full Stack, Solidity, and MLM Application Developer for\r\nweb/mobile/cross-platform development \u2014 Top repo python-fastapi-postgresql-crud-example (6\u2605, Python)",
+    "location": "Kolkata,WB,India",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": {
+      "rewritten_jd": "Pre-seed B2B SaaS founder hiring first backend engineer. Python + Postgres, ship end-to-end with the founder for six months.",
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      },
+      "subject": "Quick note",
+      "body": ""
+    },
+    "qa_verdict": "block",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "qa_blocked"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__014",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Zuhaib Khan",
+    "profile_url": "https://www.linkedin.com/in/zuhaibkhan1915/",
+    "evidence_url": "https://www.linkedin.com/in/zuhaibkhan1915/",
+    "evidence_summary": "\ud83d\udea8 Urgent Hiring | Python Backend ... Candidates Serving Notice Period Only We are looking for an experienced Python Backend Developer with 3+ years of experience to join our growing team....\nKey contributions: \u2022 Designed and implemented a relational PostgreSQL database schema to track leads, pipeline stages, and user activity \u2014 all queries executed via Django ORM \u2022 Built complete CRUD operations f",
+    "location": "remote",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__015",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "VEERESH G S",
+    "profile_url": "https://www.linkedin.com/in/veeresh-g-s-8361b691/",
+    "evidence_url": "https://www.linkedin.com/in/veeresh-g-s-8361b691/",
+    "evidence_summary": "Always measure with django-debug-toolbar locally and pg_stat_statements in production \u2014 not just query count, but total execution time. Which N+1 bug has hurt you the most in production? Drop it below. \ud83d\udc47 #Django #DRF #PostgreSQL #BackendEngineering #Python #WebDev #Performance #BuildingInPublic\nAlways measure with django-debug-toolbar locally and pg_stat_statements in production \u2014 not just query c",
+    "location": "remote",
+    "rubric_score": 6.36,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 3.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: Production Python (Django or FastAPI), PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": {
+      "rewritten_jd": "Pre-seed B2B SaaS founder hiring first backend engineer. Python + Postgres, ship end-to-end with the founder for six months.",
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      },
+      "subject": "Quick note",
+      "body": ""
+    },
+    "qa_verdict": "block",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "qa_blocked"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__016",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Jerson M.",
+    "profile_url": "https://www.linkedin.com/in/jersonml/",
+    "evidence_url": "https://www.linkedin.com/in/jersonml/",
+    "evidence_summary": "Una librer\u00eda de utilidades y clases base para proyectos con FastAPI. \ud83d\udd39 \u00bfCon qu\u00e9 trabaja? Funciona con arquitecturas limpias basadas en as\u00edncron\u00eda (async), y soporta dos enfoques de base de datos: Beanie (MongoDB) SQLAlchemy (PostgreSQL ...\nUna librer\u00eda de utilidades y clases base para proyectos con FastAPI. \ud83d\udd39 \u00bfCon qu\u00e9 trabaja? Funciona con arquitecturas limpias basadas en as\u00edncron\u00eda (async), y sop",
+    "location": "remote",
+    "rubric_score": 4.55,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 1.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend, Async Python (asyncio/asyncpg).",
+    "outreach_draft": {
+      "rewritten_jd": "Pre-seed B2B SaaS founder hiring first backend engineer. Python + Postgres, ship end-to-end with the founder for six months.",
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      },
+      "subject": "Quick note",
+      "body": ""
+    },
+    "qa_verdict": "block",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "qa_blocked"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__017",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "David Silaghi",
+    "profile_url": "https://www.linkedin.com/in/david-silaghi-91408b91/",
+    "evidence_url": "https://www.linkedin.com/in/david-silaghi-91408b91/",
+    "evidence_summary": "\u2022 Automated operational reporting and notifications, including WebID/PostIdent reports, Redis-backed payment notifications, and configurable email delivery. \u2022 Collaborated closely with product, frontend, and compliance teams in a highly regulated environment. Tech: Python, Django, Django REST Framework, FastAPI, PostgreSQL, Redis, Docker Show less\nSenior Software Engineer \u2014 Python \u00b7 Data Platforms",
+    "location": "remote",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__018",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Vish Gite",
+    "profile_url": "https://www.linkedin.com/in/vishal-gite/",
+    "evidence_url": "https://www.linkedin.com/in/vishal-gite/",
+    "evidence_summary": "We&#x27;re hiring a Senior Agentic AI Engineer \ud83d\ude80 If you&#x27;re someone who&#x27;s actually built and shipped multi-agent systems in production \u2014 not just played with them \u2014 I&#x27;d love to talk. What we&#x27;re looking for: \u2705 LangGraph / LangChain / MCP hands-on experience \u2705 RAG pipelines in production \u2705 Python + FastAPI backend depth \u2705 4\u20137 years of experience We&#x27;re building something ambit",
+    "location": "remote",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 3.0,
+      "PostgreSQL schema and query work": 0.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: Production Python (Django or FastAPI), 3+ yrs backend.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__024",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Matthieu Levet",
+    "profile_url": "https://www.linkedin.com/in/matthieulevet/",
+    "evidence_url": "https://www.linkedin.com/in/matthieulevet/",
+    "evidence_summary": "At Secutec, I joined as the sole developer on a security platform and helped evolve it into a multi-product system used by hundreds of organisations. My work covered backend development, architecture, data modelling and technical direction. Technically, I mainly work with Python (Django, FastAPI), PostgreSQL and Vue.js.\n15 years working across different worlds: public media, European institutions\u2026",
+    "location": "remote",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__026",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Abhishek Sahu",
+    "profile_url": "https://www.linkedin.com/in/abhisheksahu92/",
+    "evidence_url": "https://www.linkedin.com/in/abhisheksahu92/",
+    "evidence_summary": "Top 15 Senior Python Developer \u2013 Latest Tools &amp; Techniques Interview Questions (Big 4 / Global Consulting Firms) 1. How do you design scalable Python applications using modern frameworks such as Django, FastAPI, or Flask? 2. Describe your approach to writing clean, maintainable, and production-ready Python code in large projects.\nWith 9+ years of experience building scalable backend systems, I",
+    "location": "remote",
+    "rubric_score": 3.64,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 3.0,
+      "PostgreSQL schema and query work": 0.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 0.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: Production Python (Django or FastAPI), 3+ yrs backend.",
+    "outreach_draft": "",
+    "qa_verdict": "",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "sourced"
+  },
+  {
+    "candidate_id": "cand_run_2026-07-11T21-24-09Z_2qvn15__030",
+    "run_id": "run_2026-07-11T21-24-09Z_2qvn15",
+    "name": "Valentin Mont\u00e9",
+    "profile_url": "https://www.linkedin.com/in/valentin-mont%C3%A9-0496376b/",
+    "evidence_url": "https://www.linkedin.com/in/valentin-mont%C3%A9-0496376b/",
+    "evidence_summary": "Concr\u00e8tement, on d\u00e9veloppe des syst\u00e8mes capables de comprendre des fils de mails, analyser des centaines de pages de documents, retrouver les bonnes informations et pr\u00e9parer le travail. Aujourd&#x27;hui pour le notariat, demain pour d&#x27;autres m\u00e9tiers. \ud83d\udee0\ufe0f Stack : Python \u2022 FastAPI \u2022 PostgreSQL \u2022 SQLAlchemy \u2022 Docker \u2022 Async \u2022 APIs REST \ud83e\udd16 Une affinit\u00e9 avec les syst\u00e8mes LLM est un vrai plus.\nConcr\u00e8",
+    "location": "remote",
+    "rubric_score": 4.55,
+    "rubric_breakdown": {
+      "Production Python (Django or FastAPI)": 0.0,
+      "PostgreSQL schema and query work": 3.0,
+      "3+ yrs backend": 1.0,
+      "Async Python (asyncio/asyncpg)": 1.0,
+      "Distributed systems": 0.0,
+      "Startup experience": 0.0
+    },
+    "why_match": "Matches: PostgreSQL schema and query work, 3+ yrs backend, Async Python (asyncio/asyncpg).",
+    "outreach_draft": {
+      "rewritten_jd": "Pre-seed B2B SaaS founder hiring first backend engineer. Python + Postgres, ship end-to-end with the founder for six months.",
+      "must_have": [
+        "Production Python (Django or FastAPI)",
+        "PostgreSQL schema and query work",
+        "3+ yrs backend"
+      ],
+      "nice_to_have": [
+        "Async Python (asyncio/asyncpg)",
+        "Distributed systems",
+        "Startup experience"
+      ],
+      "ignore": [
+        "Frontend-only",
+        "WordPress specialists",
+        "Bootcamp-only"
+      ],
+      "weights": {
+        "Production Python (Django or FastAPI)": 3,
+        "PostgreSQL schema and query work": 3,
+        "3+ yrs backend": 2,
+        "Async Python (asyncio/asyncpg)": 1,
+        "Distributed systems": 1,
+        "Startup experience": 1
+      },
+      "subject": "Quick note",
+      "body": ""
+    },
+    "qa_verdict": "block",
+    "qa_reason": "",
+    "gmail_draft_id": "",
+    "status": "qa_blocked"
+  }
+]
