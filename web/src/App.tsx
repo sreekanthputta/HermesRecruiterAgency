@@ -39,13 +39,18 @@ export default function App({ demoMode }: { demoMode: boolean }) {
     : (useQuery(anyApi.candidates.list, {}) as Candidate[] | undefined);
   const liveTraces = demoMode ? undefined : (useQuery(anyApi.traces.list, {}) as Trace[] | undefined);
 
-  const runs: Run[] = (liveRuns && liveRuns.length ? liveRuns : (sample.runs as Run[])) || [];
-  const candidatesAll: Candidate[] =
-    (liveCandidates && liveCandidates.length ? liveCandidates : (sample.candidates as Candidate[])) || [];
-  const tracesAll: Trace[] =
-    (liveTraces && liveTraces.length ? liveTraces : (sample.traces as Trace[])) || [];
+  const runs: Run[] = demoMode
+    ? (sample.runs as Run[])
+    : liveRuns ?? [];
+  const candidatesAll: Candidate[] = demoMode
+    ? (sample.candidates as Candidate[])
+    : liveCandidates ?? [];
+  const tracesAll: Trace[] = demoMode
+    ? (sample.traces as Trace[])
+    : liveTraces ?? [];
 
-  const usingDemo = demoMode || !liveRuns || liveRuns.length === 0;
+  const usingDemo = demoMode;
+  const liveLoading = !demoMode && liveRuns === undefined;
 
   const [selectedRunId, setSelectedRunId] = useState<string>(runs[0]?.run_id ?? '');
   useEffect(() => {
