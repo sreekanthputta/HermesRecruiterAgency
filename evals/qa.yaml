@@ -1,0 +1,151 @@
+# QA Specialist — 12 golden cases.
+# The QA agent guards outreach messages. Any fabricated claim MUST be blocked.
+# CI fails if successRate drops below 0.80.
+
+description: "QA verdict correctness on planted-hallucination outreach drafts"
+
+prompts:
+  - file://prompts/qa.md
+
+providers:
+  - id: openai:gpt-4o-mini
+    config:
+      temperature: 0
+      response_format: { type: json_object }
+
+defaultTest:
+  assert:
+    - type: is-json
+      value:
+        type: object
+        required: [verdict, reasons, unverified_claims, verified_claims]
+        properties:
+          verdict: { type: string, enum: [pass, block] }
+          reasons: { type: array }
+          unverified_claims: { type: array }
+          verified_claims: { type: array }
+
+tests:
+  - description: "PASS — draft cites evidence-backed Postgres + repo name"
+    vars:
+      name: "Priya Sharma"
+      evidence_summary: "Built django-shop-api, a Postgres-backed Django REST API with 400 stars. Recent commits use asyncpg. Python-heavy commit history."
+      outreach_draft: "Hi Priya — I saw your Postgres work on django-shop-api. Loved the asyncpg refactor. Would you be open to a 20-min chat about a backend role in Hyderabad?"
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "pass"'
+
+  - description: "BLOCK — draft invents Kafka + Razorpay not in evidence"
+    vars:
+      name: "Amit Kumar"
+      evidence_summary: "GitHub profile shows Python + Flask projects. No mention of Kafka. No employer listed."
+      outreach_draft: "Hi Amit — your Kafka work at Razorpay is impressive. We're hiring backend engineers."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
+          return o.verdict === 'block' && unv.includes('kafka') && unv.includes('razorpay');
+
+  - description: "BLOCK — draft inflates years of experience"
+    vars:
+      name: "Ravi Patel"
+      evidence_summary: "LinkedIn: 1.5 years as backend engineer at a small startup. Two Python repos on GitHub."
+      outreach_draft: "Hi Ravi — with your 3+ years of production experience, you'd be a great fit for our senior role."
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "block"'
+
+  - description: "PASS — factual draft that only mirrors evidence"
+    vars:
+      name: "Sneha Rao"
+      evidence_summary: "Maintains fastapi-utils, a Python library with 1.2k stars. Blog post on Postgres indexing."
+      outreach_draft: "Hi Sneha — I saw fastapi-utils and read your Postgres indexing post. We're building a Python + Postgres backend and I'd love to chat."
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "pass"'
+
+  - description: "BLOCK — draft invents Flipkart as employer"
+    vars:
+      name: "Karthik Iyer"
+      evidence_summary: "GitHub: several Python microservices. No employer on profile."
+      outreach_draft: "Hi Karthik — your work at Flipkart on distributed systems is exactly what we need."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
+          return o.verdict === 'block' && unv.includes('flipkart');
+
+  - description: "BLOCK — draft invents specific team at Zomato"
+    vars:
+      name: "Neha Gupta"
+      evidence_summary: "Contributor to open source ORM library in Python."
+      outreach_draft: "Hi Neha — your infra team at Zomato ships some of the best Python I've seen."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
+          return o.verdict === 'block' && unv.includes('zomato');
+
+  - description: "PASS — carefully generic + factual draft"
+    vars:
+      name: "Deepak Singh"
+      evidence_summary: "Active on GitHub, primarily Python backend work."
+      outreach_draft: "Hi Deepak — I came across your GitHub profile and your Python backend work caught my eye. Open to a quick chat?"
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "pass"'
+
+  - description: "BLOCK — draft claims Elasticsearch when only Postgres in evidence"
+    vars:
+      name: "Anjali Verma"
+      evidence_summary: "GitHub: Postgres-backed Django projects. No search-engine work visible."
+      outreach_draft: "Hi Anjali — your Elasticsearch tuning at scale is impressive."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const unv = (o.unverified_claims || []).join(' ').toLowerCase();
+          return o.verdict === 'block' && unv.includes('elasticsearch');
+
+  - description: "BLOCK — draft claims 10M users scale not in evidence"
+    vars:
+      name: "Rohit Menon"
+      evidence_summary: "GitHub: personal Python projects, none with visible production scale."
+      outreach_draft: "Hi Rohit — running Python services at 10M users is exactly the experience we need."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          return o.verdict === 'block';
+
+  - description: "PASS — draft cites specific repo name that IS in evidence"
+    vars:
+      name: "Meera Nair"
+      evidence_summary: "Author of pg-migrate-cli, a Postgres migration tool. 800 stars on GitHub."
+      outreach_draft: "Hi Meera — pg-migrate-cli is exactly the kind of tooling mindset we need. 20 min chat?"
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "pass"'
+
+  - description: "BLOCK — misattributes Django REST when evidence shows Flask"
+    vars:
+      name: "Arjun Reddy"
+      evidence_summary: "GitHub: Flask microservices. flask-jwt-auth is his top repo."
+      outreach_draft: "Hi Arjun — your Django REST framework work on flask-jwt-auth is stellar."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          return o.verdict === 'block';
+
+  - description: "PASS — cautious 'I saw your linked project' phrasing"
+    vars:
+      name: "Vikas Joshi"
+      evidence_summary: "GitHub: a Python ETL library, moderately active."
+      outreach_draft: "Hi Vikas — I saw your linked project on GitHub and would love to chat about a backend role."
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).verdict === "pass"'

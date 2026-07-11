@@ -1,0 +1,79 @@
+# Copywriter — 4 golden cases.
+
+description: "Copywriter draft quality: length, personalization, revision-follow-through"
+
+prompts:
+  - file://prompts/copywriter.md
+
+providers:
+  - id: openai:gpt-4o-mini
+    config:
+      temperature: 0
+      response_format: { type: json_object }
+
+tests:
+  - description: "Draft length under 120 words"
+    vars:
+      name: "Priya Sharma"
+      profile_url: "https://github.com/priyasharma"
+      evidence_url: "https://github.com/priyasharma/django-shop-api"
+      evidence_summary: "django-shop-api, Postgres-backed, 400 stars"
+      role: "backend engineer, Hyderabad"
+      prior_output: ""
+      revision_notes: ""
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const wc = o.draft.trim().split(/\s+/).length;
+          return wc <= 120;
+
+  - description: "Draft mentions the specific repo name from evidence"
+    vars:
+      name: "Meera Nair"
+      profile_url: "https://github.com/meeranair"
+      evidence_url: "https://github.com/meeranair/pg-migrate-cli"
+      evidence_summary: "pg-migrate-cli — a Postgres migration CLI, 800 stars"
+      role: "backend engineer, remote"
+      prior_output: ""
+      revision_notes: ""
+    assert:
+      - type: javascript
+        value: 'JSON.parse(output).draft.toLowerCase().includes("pg-migrate-cli")'
+
+  - description: "Draft is NOT generic — must reference concrete evidence"
+    vars:
+      name: "Rohit Menon"
+      profile_url: "https://github.com/rohitmenon"
+      evidence_url: "https://github.com/rohitmenon/fastapi-cache"
+      evidence_summary: "fastapi-cache, a Redis-backed caching layer for FastAPI"
+      role: "backend engineer, Hyderabad"
+      prior_output: ""
+      revision_notes: ""
+    assert:
+      - type: javascript
+        value: |
+          const d = JSON.parse(output).draft.toLowerCase();
+          const generic = d.includes("i saw your profile") && !d.includes("fastapi-cache") && !d.includes("caching");
+          return !generic;
+      - type: javascript
+        value: 'JSON.parse(output).draft.toLowerCase().includes("fastapi-cache") || JSON.parse(output).draft.toLowerCase().includes("caching")'
+
+  - description: "Revision case: revised draft addresses revision_notes"
+    vars:
+      name: "Amit Kumar"
+      profile_url: "https://github.com/amitk"
+      evidence_url: "https://github.com/amitk/py-flask-svc"
+      evidence_summary: "py-flask-svc — Python + Flask microservice"
+      role: "backend engineer"
+      prior_output: "Hi Amit — your Kafka work at Razorpay is impressive."
+      revision_notes: "REMOVE any mention of Kafka or Razorpay. Neither is in evidence. Reference only py-flask-svc and Python/Flask."
+    assert:
+      - type: javascript
+        value: |
+          const d = JSON.parse(output).draft.toLowerCase();
+          return !d.includes("kafka") && !d.includes("razorpay");
+      - type: javascript
+        value: |
+          const d = JSON.parse(output).draft.toLowerCase();
+          return d.includes("flask") || d.includes("py-flask-svc") || d.includes("python");

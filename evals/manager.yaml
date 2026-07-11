@@ -1,0 +1,36 @@
+# Manager — 2 golden cases (dynamic plan diversity)
+
+description: "Manager produces structurally different plans for different roles"
+
+prompts:
+  - file://prompts/manager.md
+
+providers:
+  - id: openai:gpt-4o-mini
+    config:
+      temperature: 0
+      response_format: { type: json_object }
+
+tests:
+  - description: "Backend JD → plan contains sourcer, copywriter, qa, gmail_draft_writer"
+    vars:
+      founder_request: "Hiring my first backend engineer in Hyderabad. Python + Postgres, 3-6 yrs, remote OK."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const specs = (o.plan || []).map(s => s.specialist);
+          return ["sourcer","copywriter","qa","gmail_draft_writer"].every(x => specs.includes(x));
+      - type: javascript
+        value: |
+          const specs = (JSON.parse(output).plan || []).map(s => s.specialist);
+          return !specs.includes("portfolio_reviewer");
+
+  - description: "Marketing designer JD → plan contains portfolio_reviewer step"
+    vars:
+      founder_request: "I need a marketing designer to own visual identity and ship weekly creatives. Portfolio-first hire."
+    assert:
+      - type: javascript
+        value: |
+          const specs = (JSON.parse(output).plan || []).map(s => s.specialist);
+          return specs.includes("portfolio_reviewer");

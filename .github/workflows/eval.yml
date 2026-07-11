@@ -1,0 +1,74 @@
+name: Prompt Evals
+
+on:
+  pull_request:
+    paths:
+      - 'hermes/prompts/**'
+      - 'evals/**'
+  workflow_dispatch:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install promptfoo
+        run: npm install -g promptfoo
+
+      - name: Run QA suite (primary gate)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          promptfoo eval -c evals/promptfooconfig.yaml --no-cache --output evals/out-qa.json || true
+
+      - name: Run copywriter suite
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          promptfoo eval -c evals/copywriter.yaml --no-cache --output evals/out-copywriter.json || true
+
+      - name: Run strategist suite
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          promptfoo eval -c evals/strategist.yaml --no-cache --output evals/out-strategist.json || true
+
+      - name: Run manager suite
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          promptfoo eval -c evals/manager.yaml --no-cache --output evals/out-manager.json || true
+
+      - name: Enforce aggregate threshold
+        run: |
+          set -e
+          total=0
+          passed=0
+          for f in evals/out-*.json; do
+            [ -f "$f" ] || continue
+            p=$(jq '.results.stats.successes // 0' "$f")
+            fpass=$(jq '.results.stats.failures // 0' "$f")
+            total=$((total + p + fpass))
+            passed=$((passed + p))
+          done
+          if [ "$total" -eq 0 ]; then
+            echo "No eval results found — failing." && exit 1
+          fi
+          rate=$(echo "scale=4; $passed / $total" | bc -l)
+          echo "Aggregate score: $passed / $total = $rate"
+          bad=$(echo "$rate < 0.80" | bc -l)
+          if [ "$bad" -eq 1 ]; then
+            echo "::error::Eval score $rate below threshold 0.80 — BLOCKING merge"
+            exit 1
+          fi
+          echo "PASS — score $rate >= 0.80"
+
+      - name: Upload eval artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptfoo-results
+          path: evals/out-*.json

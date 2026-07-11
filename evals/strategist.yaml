@@ -1,0 +1,35 @@
+# Strategist — 2 golden cases (plan-diversity + role-appropriate must_haves)
+
+description: "Rubric structure: must_have differs across role types"
+
+prompts:
+  - file://prompts/strategist.md
+
+providers:
+  - id: openai:gpt-4o-mini
+    config:
+      temperature: 0
+      response_format: { type: json_object }
+
+tests:
+  - description: "Backend JD → must_have contains at least one of {Python, backend, API}"
+    vars:
+      jd: "Hiring a backend engineer in Hyderabad. Must have Python + Postgres, 3-6 yrs experience building production APIs. Remote OK."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const mh = (o.must_have || []).join(' ').toLowerCase();
+          return /python|backend|api/.test(mh);
+
+  - description: "Designer JD → must_have does NOT read like a backend rubric"
+    vars:
+      jd: "Hiring a marketing designer. Need someone who can own visual identity, produce landing-page mockups in Figma, and ship social creatives weekly."
+    assert:
+      - type: javascript
+        value: |
+          const o = JSON.parse(output);
+          const mh = (o.must_have || []).join(' ').toLowerCase();
+          const hasVisual = /figma|design|visual|portfolio|creative|mockup/.test(mh);
+          const hasBackend = /postgres|kafka|django|python.+backend/.test(mh);
+          return hasVisual && !hasBackend;
