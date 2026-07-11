@@ -7,9 +7,8 @@
 ## Pre-flight (T-5 min)
 
 ```bash
-cd convex && CONVEX_DEPLOY_KEY='<key>' npx convex run admin:clearAll   # wipe demo state
-hermes gateway status && hermes mcp list                                # 'recruiter' ✓ enabled
-open https://hermes-recruiter.pages.dev                                 # board loads, empty
+hermes gateway status && hermes mcp list       # 'recruiter' ✓ enabled
+open https://hermes-recruiter.pages.dev        # board loads, past runs in dropdown
 ```
 Phone: Gmail Drafts empty, Telegram chat ready.
 
