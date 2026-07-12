@@ -234,7 +234,6 @@ def run(jd_text: str, founder_request: str = None) -> dict:
         parent_trace_id=plan_trace.trace_id, verdict="accepted",
     )
 
-    candidates = candidates[:5]
     if candidates:
         candidates[0]["_force_bounce"] = True
 
